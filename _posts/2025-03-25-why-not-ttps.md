@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "WHY NOT MITRE TTPS?"
+tags: security
 ---
 
 # WHY NOT MITRE TTPS?
