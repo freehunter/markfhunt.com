@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "THE PERCEPTION OF THE PROBLEM IS THE PROBLEM"
+tags: rant
 ---
 
 
