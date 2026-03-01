@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "YOU’RE PROBABLY NOT DOING DEVSECOPS SO STOP SAYING YOU ARE"
-tags: security
+category: security
 ---
 
 # YOU’RE PROBABLY NOT DOING DEVSECOPS SO STOP SAYING YOU ARE
