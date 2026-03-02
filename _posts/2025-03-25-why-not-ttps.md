@@ -2,6 +2,7 @@
 layout: post
 title:  "WHY NOT MITRE TTPS?"
 category: security
+author: "Mark F Hunt"
 ---
 
 # WHY NOT MITRE TTPS?
