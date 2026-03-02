@@ -2,7 +2,6 @@
 layout: post
 title:  "Nova - An Orchid's Spine Short"
 category: writing
-tags: orchids_spine short
 author: "Mark F Hunt"
 ---
 
