@@ -2,6 +2,7 @@
 layout: post
 title:  "YOU’RE PROBABLY NOT DOING DEVSECOPS SO STOP SAYING YOU ARE"
 category: security
+author: "Mark F Hunt"
 ---
 
 # YOU’RE PROBABLY NOT DOING DEVSECOPS SO STOP SAYING YOU ARE
