@@ -5,10 +5,6 @@ category: writing
 author: "Mark F Hunt"
 ---
 
-
-# Nova
-### An Orchid’s Spine short
-
 “Two purple moons and a gravity flux,” Jake declared, slapping down a card with a flourish that was entirely unjustified by its scribbled-on surface. “That’s a full destabilizer. I win this round. Again.”  
 
 “You just made those rules up!” Emily protested, tossing a card of her own that said Wormhole, Probably. “Yesterday, gravity fluxes canceled purple moons.” 
