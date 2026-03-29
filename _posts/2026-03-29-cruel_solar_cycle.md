@@ -4,8 +4,6 @@ title:  "Cruel Solar Cycle - An Orchid's Spine Short"
 category: writing
 author: "Mark F Hunt"
 ---
-# Balyor Drift
-### An Orchid's Spine Short
 Emily slowed in the hatchway, one hand still lazily hooked around the frame as if she'd forgotten whether she meant to enter or retreat. The engineering deck glowed low and amber, like it always did when Mike was in one of his moods. The lights were dimmed, the systems whispering instead of humming. The quantum flux array pulsed like a slow, patient heartbeat. And he was exactly where she'd expected to find him: cross-legged on the grated floor panels beside the core, sleeves rolled and grease smeared along his knuckles like ink stains he'd stopped bothering to wash off.
 
 "...orbiting slow, out the viewport," the AI murmured, its voice soft and almost human. The sound threaded through the deck speakers like breath across glass. "...I keep circling but you don't come back around..."
