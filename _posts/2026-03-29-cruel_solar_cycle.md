@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Nova - An Orchid's Spine Short"
+title:  "Cruel Solar Cycle - An Orchid's Spine Short"
 category: writing
 author: "Mark F Hunt"
 ---
