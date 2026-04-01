@@ -31,7 +31,7 @@ Emily grinned. “Now that’s the spirit, Captain."
 
 “Deal me in,” Anna said coolly.  
 
-Jake gave a mock salute and began reshuffling the cards. Or at least, shuffling them in ways that made Emily suspect he was just redistributing the chaos. Outside the viewport, the stars shifted imperceptibly. Inside, the Orchid’s Spine pulsed with half-suppressed laughter, flickering lights, and the warmth of a crew who had survived just enough together to be family, even if none of them were ready to say it out loud. Emily reached into her jacket and pulled out a new card. It featured a stick-figure in a pilot’s chair and the words Emergency Snack Protocol. She slid it into her deck without comment. Mike saw it but said nothing. He smiled. Just slightly.  
+Jake gave a mock salute and began reshuffling the cards. Or at least, shuffling them in ways that made Emily suspect he was just redistributing the chaos. She reached into her jacket and pulled out a new card. It featured a stick-figure in a pilot’s chair and the words Emergency Snack Protocol. She slid it into her deck without comment. Mike saw it but said nothing. He just smiled.  
 
 
 While the others were playing, something caught Mike’s eye outside the viewport. His brow furrowed. The black of deep space was unyielding, silent, familiar. Right until it wasn’t. Out past the thin shimmer of the Orchid's deflective field, a single point of light pulsed like a heartbeat. Bright, steady, and new.  
