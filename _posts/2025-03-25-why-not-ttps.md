@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "WHY NOT MITRE TTPS?"
+title:  "Why Not MITRE TTPS?"
 category: security
 author: "Mark F Hunt"
 ---
 
-# WHY NOT MITRE TTPS?
+# Why Not MITRE TTPS?
 
 MITRE ATT&CK has become very popular in cybersecurity over the the last few years, with most vendors rushing to support MITRE’s Tactics, Techniques, and Procedures (TTPs) and ATT&CK Navigator. MITRE even has the MITRE ATT&CK Defender (MAD) certification to learn in-depth knowledge of the framework. In fact I am an active holder of the MAD certification.
 
