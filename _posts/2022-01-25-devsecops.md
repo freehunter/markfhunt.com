@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "YOU’RE PROBABLY NOT DOING DEVSECOPS SO STOP SAYING YOU ARE"
+title:  "You're Probably Not Doing DevSecOps So Stop Saying You Are"
 category: security
 author: "Mark F Hunt"
 ---
 
-# YOU’RE PROBABLY NOT DOING DEVSECOPS SO STOP SAYING YOU ARE
+# You're Probably Not Doing DevSecOps So Stop Saying You Are
 
 I was a security consultant for 6 years, and I’ve been working in security for 10 years and if there’s one thing I’ve learned its this: IT and the rest of the business really doesn’t like or even understand security. We get in their way and we demand things of them that only help us, and the business never sees value from it. The value exists, for sure, but the business doesn’t see it.
 
