@@ -5,8 +5,6 @@ category: security
 author: "Mark F Hunt"
 ---
 
-# Vague Direction in the Age of AI
-
 Vague direction from stakeholders is annoying. It's difficult to follow a directive that someone hasn't fully thought out. A task that lacks clear requirements or even a well-defined ask quickly turns into a time sink. This becomes especially true once generative AI is involved.
 
 Working at a tech company, my team has been strongly encouraged to use generative AI at work. In most situations we use this tool to automate well-defined tasks that we have already been completing, not for net-new work. We also maintain internal documentation for our team's inputs and outputs, which is written by hand. When we started this initiative, we were given the documentation template and expectations for the standard look and feel of the documentation, and it has gone well. Every team's documentation looks and behaves the same. Predictable, functional, usable.
