@@ -13,7 +13,7 @@ But like most internal technical documentation, the material is dry and drab. An
 
 ## Vague Instructions are Dangerous
 
-At an AI-first company, on engineering teams with no front-end design experience, the first thing any team member is going to do is open the AI and copy the stakeholder's instructions. In this case, the prompt is "make this page prettier". And the AI will comply as AI always will, without hesitation or follow-up questions, working only with the context it has been given. The AI follows the instructions it was prompted with, the engineer follows the instructions *they* were prompted with, and if the initial prompt was vague, the output will invariably be vague as well.
+At an AI-first company, on engineering teams with no front-end design experience, the first thing any team member is going to do is open the AI and copy the stakeholder's instructions. In this case, the prompt is "make this page prettier". And the AI will comply as AI always will: without hesitation or follow-up questions, working only with the context it has been given. The AI follows the instructions it was prompted with, the engineer follows the instructions *they* were prompted with, and if the initial prompt was vague, the output will invariably be vague as well.
 
 In this situation, the output was JavaScript loading several external dependencies from third party libraries. The output was infinite CSS animations, looping at 60FPS dozens of times on one page. The output was one thousand lines of front-end web design written by an AI, without anyone on the team having the knowledge or skills to read, understand, or maintain it. The output was "pretty". The reality was not.
 
