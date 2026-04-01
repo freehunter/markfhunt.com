@@ -7,12 +7,56 @@
 
 {% seo %}
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <style>
+      .mobile-navigation {
+        display: none;
+      }
+
+      .mobile-navigation summary {
+        cursor: pointer;
+        font-weight: 600;
+        margin: 1rem 0;
+      }
+
+      .mobile-navigation summary:focus {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+      }
+
+      .mobile-navigation nav {
+        margin-top: 0.75rem;
+      }
+
+      @media screen and (max-width: 960px) {
+        .desktop-navigation {
+          display: none;
+        }
+
+        .mobile-navigation {
+          display: block;
+        }
+      }
+    </style>
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
     {% include head-custom.html %}
   </head>
   <body>
+    {% capture site_navigation %}
+      {% if site.categories and site.categories.size > 0 %}
+        <nav aria-label="Browse posts by category">
+          {% for category in site.categories %}
+            <h3>{{ category[0] }}</h3>
+            <ul>
+              {% for post in category[1] %}
+                <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endfor %}
+        </nav>
+      {% endif %}
+    {% endcapture %}
     <div class="wrapper">
       <header>
         <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
@@ -31,14 +75,14 @@
         </ul>
         {% endif %}
 
-        {% for category in site.categories %}
-          <h3>{{ category[0] }}</h3>
-          <ul>
-            {% for post in category[1] %}
-              <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-            {% endfor %}
-          </ul>
-        {% endfor %}
+        <div class="desktop-navigation">
+          {{ site_navigation }}
+        </div>
+
+        <details class="mobile-navigation">
+          <summary>Browse posts by category</summary>
+          {{ site_navigation }}
+        </details>
 
         {% for tag in site.tags %}
           <h3>{{ tag[0] }}</h3>
