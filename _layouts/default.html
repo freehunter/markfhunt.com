@@ -27,6 +27,92 @@
         margin-top: 0.75rem;
       }
 
+      .category-posts,
+      .category-posts-more ul {
+        list-style: none;
+        margin: 0 0 1rem;
+        padding: 0;
+      }
+
+      .category-posts li,
+      .category-posts-more li {
+        margin: 0 0 0.4rem;
+      }
+
+      .category-posts-more {
+        margin: -0.6rem 0 1.2rem;
+      }
+
+      .category-posts-more summary {
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 600;
+        list-style: none;
+      }
+
+      .category-posts-more summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .category-posts-more summary:focus {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+      }
+
+      .category-posts-more summary::after {
+        content: " +";
+      }
+
+      .category-posts-more[open] summary::after {
+        content: " -";
+      }
+
+      .category-posts-more ul {
+        margin-top: 0.5rem;
+      }
+
+      .post-card-list {
+        display: grid;
+        gap: 1rem;
+        list-style: none;
+        margin: 1.5rem 0 0;
+        padding: 0;
+      }
+
+      .post-card {
+        border: 1px solid #e5e5e5;
+        border-radius: 8px;
+        padding: 1rem;
+      }
+
+      .post-card h2 {
+        font-size: 1.25rem;
+        line-height: 1.25;
+        margin: 0 0 0.35rem;
+      }
+
+      .post-card-meta {
+        color: #727272;
+        font-size: 0.85rem;
+        margin: 0 0 0.65rem;
+      }
+
+      .post-card-body > :first-child {
+        margin-top: 0;
+      }
+
+      .post-card-body > :last-child {
+        margin-bottom: 0;
+      }
+
+      .post-card-summary {
+        margin-bottom: 0.75rem;
+      }
+
+      .post-card-link {
+        font-weight: 600;
+      }
+
       @media screen and (max-width: 960px) {
         .desktop-navigation {
           display: none;
@@ -48,11 +134,21 @@
         <nav aria-label="Browse posts by category">
           {% for category in site.categories %}
             <h3>{{ category[0] }}</h3>
-            <ul>
-              {% for post in category[1] %}
-                <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            <ul class="category-posts">
+              {% for post in category[1] limit:3 %}
+                <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
               {% endfor %}
             </ul>
+            {% if category[1].size > 3 %}
+              <details class="category-posts-more">
+                <summary>Show All Posts</summary>
+                <ul>
+                  {% for post in category[1] offset:3 %}
+                    <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </details>
+            {% endif %}
           {% endfor %}
         </nav>
       {% endif %}
@@ -82,13 +178,37 @@
 
       {{ content }}
 
-        <ul>
+        {% if page.url == "/" %}
+        <ul class="post-card-list">
           {% for post in site.posts %}
             <li>
-              <a href="{{ post.url }}">{{ post.title }}</a>
+              <article class="post-card">
+                <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+                <p class="post-card-meta">
+                  {{ post.date | date: "%B %-d, %Y" }}
+                  {% if post.category %}
+                    / {{ post.category }}
+                  {% endif %}
+                </p>
+                <div class="post-card-body">
+                  {% if post.type == "note" %}
+                    {{ post.content }}
+                  {% else %}
+                    <div class="post-card-summary">
+                      {% if post.summary %}
+                        {{ post.summary | markdownify }}
+                      {% else %}
+                        <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
+                      {% endif %}
+                    </div>
+                    <a class="post-card-link" href="{{ post.url | relative_url }}">Read More</a>
+                  {% endif %}
+                </div>
+              </article>
             </li>
           {% endfor %}
         </ul>
+        {% endif %}
 
       </section>
       <footer>
