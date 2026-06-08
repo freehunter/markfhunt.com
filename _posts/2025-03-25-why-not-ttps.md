@@ -3,6 +3,11 @@ layout: post
 title:  "Why Not MITRE TTPS?"
 category: security
 author: "Mark F Hunt"
+summary: >
+  MITRE ATT&CK is useful, but it is not magic and it will not define your
+  detection strategy for you. TTPs are reactive, resource-heavy, environment
+  dependent, and sometimes less immediately useful than the boring IoCs that
+  stop the bleeding right now.
 ---
 
 # Why Not MITRE TTPS?

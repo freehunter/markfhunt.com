@@ -3,6 +3,11 @@ layout: post
 title:  "Vague Direction in the Age of AI"
 category: security
 author: "Mark F Hunt"
+summary: >
+  "Make it prettier" is not a requirement, and in an AI-first workplace vague
+  direction turns into vague output at machine speed. If leaders expect
+  engineers to use AI well, they need to use it too: compress ambiguity, define
+  outcomes, and stop outsourcing clarity to the person downstream.
 ---
 
 Vague direction from stakeholders is annoying. It's difficult to follow a directive that someone hasn't fully thought out. A task that lacks clear requirements or even a well-defined ask quickly turns into a time sink. This becomes especially true once generative AI is involved.

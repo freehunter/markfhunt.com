@@ -3,6 +3,11 @@ layout: post
 title:  "You're Probably Not Doing DevSecOps So Stop Saying You Are"
 category: security
 author: "Mark F Hunt"
+summary: >
+  Security keeps saying it wants to be part of DevOps, but too often we refuse
+  to use the same tools, share the same responsibilities, or provide value the
+  business can actually see. If we want a seat in the workflow, we need to stop
+  hiding behind magic curtains and start acting like part of the team.
 ---
 
 # You're Probably Not Doing DevSecOps So Stop Saying You Are

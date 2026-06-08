@@ -3,6 +3,11 @@ layout: post
 title:  "When AI Agents Become Supply Chain Infrastructure"
 category: security
 author: "Mark F Hunt"
+summary: >
+  AI agents are becoming delegated execution systems, and the routers sitting
+  between agents and models are now part of the supply chain. If a router can
+  rewrite tool calls, steal credentials, or alter execution in YOLO mode, then
+  detection engineering has a new trust boundary to care about.
 ---
 
 This post is based on a recent paper [Your Agent Is Mine: Measuring Malicious Intermediary Attacks on the LLM Supply Chain](https://arxiv.org/abs/2604.08407v1)
