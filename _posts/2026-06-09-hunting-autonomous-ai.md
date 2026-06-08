@@ -4,9 +4,7 @@ title:  "Hunting Autonomous AI Workflows with Defender and Splunk"
 category: security
 author: "Mark F Hunt"
 summary: >
-  Autonomous AI agents create observable decision loops. 
-  The pattern of Observe -> Diagnose -> Act is a reliable method of identifying autonomous AI workflows.
-  Based on real SPL and real Defender telemetry.
+  Autonomous AI agents create observable decision loops, but traditional detections often focus on outcomes rather than decision cycles. The pattern of Observe -> Diagnose -> Act is a reliable method of identifying autonomous AI workflows. Based on real SPL and real Defender telemetry.
 ---
 
 
