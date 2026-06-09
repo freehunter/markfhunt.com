@@ -8,6 +8,42 @@
 {% seo %}
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <style>
+      .wrapper {
+        box-sizing: border-box;
+        display: grid;
+        gap: clamp(2rem, 5vw, 5rem);
+        grid-template-columns: minmax(16rem, 1fr) minmax(0, 2fr);
+        margin: 0 auto;
+        max-width: 1440px;
+        padding: 0 2rem;
+        width: 100%;
+      }
+
+      header,
+      section,
+      footer {
+        float: none;
+        position: static;
+        width: auto;
+      }
+
+      header {
+        grid-column: 1;
+      }
+
+      section {
+        grid-column: 2;
+        min-width: 0;
+      }
+
+      footer {
+        grid-column: 1;
+      }
+
+      pre {
+        overflow-x: auto;
+      }
+
       .mobile-navigation {
         display: none;
       }
@@ -114,6 +150,11 @@
       }
 
       @media screen and (max-width: 960px) {
+        .wrapper {
+          display: block;
+          padding: 0 1.5rem;
+        }
+
         .desktop-navigation {
           display: none;
         }
