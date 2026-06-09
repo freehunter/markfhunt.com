@@ -99,9 +99,9 @@ When Claude identifies a bug or inadequacy in the running code, it modifies sour
 
 The signal is a restart command whose `description` field references applying a change. "To pick up new entrypoint", "deploy updated config", "apply patch", etc.
 
-You will see the deployment step with commands like `cf restart` `cf scale` `kubectl rollout restart` `kubectl scale` `heroku restart` `fly scale` `az webapp restart` `aws ecs update-service`.
+You will see the deployment step with commands like `cf restart`, `cf scale`, `kubectl rollout restart`, `kubectl scale`, `heroku restart`, `fly scale`, `az webapp restart`, `aws ecs update-service`.
 
-This is followed immediately by a post-deploy verification with commands like `pick up` `apply` `deploy` `new.*config` `updated` `patch` `change` `entrypoint` `restart.*after`
+This is followed immediately by a post-deploy verification with commands like `pick up`, `apply`, `deploy`, `new.*config`, `updated`, `patch`, `change`, `entrypoint`, `restart.*after`
 
 **The sleep-then-verify post-deploy pattern:**
 
