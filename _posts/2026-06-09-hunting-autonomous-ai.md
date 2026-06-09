@@ -4,7 +4,7 @@ title:  "Hunting Autonomous AI Workflows with Defender and Splunk"
 category: security
 author: "Mark F Hunt"
 summary: >
-  Autonomous AI agents create observable decision loops, but traditional detections often focus on outcomes rather than decision cycles. The pattern of Observe -> Diagnose -> Act is a reliable method of identifying autonomous AI workflows. Based on real SPL and real Defender telemetry.
+  Autonomous AI agents create observable decision loops, but traditional detections often focus on outcomes rather than decision cycles. The pattern of Observe -> Decide -> Act is a reliable method of identifying autonomous AI workflows. Based on real SPL and real Defender telemetry.
 ---
 
 
@@ -19,7 +19,7 @@ I recently had a reason to look for when Claude Code is being used as a fully au
 
 This creates a new class of activity that looks superficially like a developer, but carries a very different risk profile: Claude never read your employee handbook, can't be held responsible for policy violations, its decisions are made at machine speed, and the full capability of a cloud CLI is available to the agent.
 
-While this research focuses on Claude Code, the broader lesson is that autonomous agents create observable decision loops. The specific artifacts discussed here may change across tools, but the pattern of observe -> diagnose -> act is likely to appear across many agentic systems.
+While this research focuses on Claude Code, the broader lesson is that autonomous agents create observable decision loops. The specific artifacts discussed here may change across tools, but the pattern of observe -> decide -> act is likely to appear across many agentic systems. This is similar to the classic [OODA loop](https://en.wikipedia.org/wiki/OODA_loop) (observe, orient, decide, act). The Orient and Decide phases are often merged within Claude's machine-generated reasoning.
 
 
 ## The Pattern: What Autonomous Claude Looks Like
@@ -27,7 +27,7 @@ While this research focuses on Claude Code, the broader lesson is that autonomou
 An autonomous Claude workflow running against cloud infrastructure produces a repeating cycle:
 
 ```
-Check logs -> Diagnose -> Act (restart / scale / modify code) -> Wait -> Check logs again
+Check logs -> Decide -> Act (restart / scale / modify code) -> Wait -> Check logs again
 ```
 
 The full loop can repeat dozens of times per hour, unattended, for hours or days. The key forensic artifact is that **every action is wrapped in a Claude hook**, which means each shell command carries a JSON payload containing Claude's reasoning. The `description` field is Claude narrating *why* it's doing something.
@@ -64,7 +64,7 @@ index=your_edr_index sourcetype=mdatpall ActionType=ProcessCreated
 
 ---
 
-## Observe -> Diagnose -> Act
+## Observe -> Decide -> Act
 
 When an AI is working autonomously on deploying code, it will follow a predictable pattern. Read the logs, determine what's wrong, make a change, then observe again.
 
@@ -78,9 +78,9 @@ The AI will run `cf logs`, `kubectl logs`, or similar platform log commands with
 }
 ```
 
-### Diagnose
+### Decide
 
-The incredible thing is Claude labels each command with its intent. The `description` field provides a machine-generated explanation of intent. This is invaluable for IR and threat hunting because it tells you what Claude believed was wrong at each point in time.
+The incredible thing is Claude labels each command with its intent. The `description` field provides a machine-generated explanation of what it is trying to do. This is invaluable for IR and threat hunting because it tells you what Claude believed was wrong at each point in time.
 
 (Seriously, when do we ever get the chance to see *why* a user performed a command? Huge win here.)
 
@@ -99,11 +99,9 @@ When Claude identifies a bug or inadequacy in the running code, it modifies sour
 
 The signal is a restart command whose `description` field references applying a change. "To pick up new entrypoint", "deploy updated config", "apply patch", etc.
 
-**What the telemetry looks like:**
+You will see the deployment step with commands like `cf restart` `cf scale` `kubectl rollout restart` `kubectl scale` `heroku restart` `fly scale` `az webapp restart` `aws ecs update-service`.
 
-The Edit/Write events are invisible to Defender. You see only the deployment step with commands like `cf restart` `cf scale` `kubectl rollout restart` `kubectl scale` `heroku restart` `fly scale` `az webapp restart` `aws ecs update-service`.
-
-Followed immediately by a post-deploy verification with commands like `pick up` `apply` `deploy` `new.*config` `updated` `patch` `change` `entrypoint` `restart.*after`
+This is followed immediately by a post-deploy verification with commands like `pick up` `apply` `deploy` `new.*config` `updated` `patch` `change` `entrypoint` `restart.*after`
 
 **The sleep-then-verify post-deploy pattern:**
 
@@ -121,10 +119,6 @@ For environments where you have no prior leads, start with this broad hunt befor
 index=your_edr_index sourcetype=mdatpall ActionType=ProcessCreated
 | where match(InitiatingProcessCommandLine, "\.claude/hooks/")
     OR match(ProcessCommandLine, "\.claude/hooks/")
-| stats count, dc(AccountUpn) as accounts, values(AccountUpn) as account_list,
-        dc(DeviceName) as hosts, earliest(Timestamp) as first_seen, latest(Timestamp) as last_seen
-    by InitiatingProcessFileName
-| sort -count
 ```
 
 **Hunt for the inline `node -e` hook pattern specifically:**
@@ -134,9 +128,6 @@ index=your_edr_index sourcetype=mdatpall ActionType=ProcessCreated
 | where match(ProcessCommandLine, "node -e '")
     AND match(ProcessCommandLine, "hook_event_name")
     AND match(ProcessCommandLine, "tool_name")
-| rex field=ProcessCommandLine "\"permission_mode\":\"(?P<permission_mode>[^\"]+)\""
-| stats count by permission_mode, AccountUpn, DeviceName
-| sort -count
 ```
 In Python, `node -e` is often replaced with `eval python3`. You can also look for `PYEOF`.
 
@@ -154,7 +145,6 @@ These are not IOCs, there are no malicious hashes or suspicious domains. The sig
 | Autonomous restart/scale of cloud apps | `cf restart`, `cf scale`, `kubectl rollout` in bash commands |
 | Code change implied by restart description | Descriptions containing "pick up", "apply", "new entrypoint", etc. |
 | Post-deploy wait-and-verify | `sleep N && cf logs` pattern, N > 10 |
-| Deployed app solving CAPTCHAs | CAPTCHA/OCR strings in `stdout` of log-check events |
 | Long-running autonomous session | Same `session_id` spanning > 1 hour of continuous activity |
 
 ---
@@ -167,6 +157,32 @@ These are not IOCs, there are no malicious hashes or suspicious domains. The sig
 
 **Blind spots:** Edit and Write tool calls are invisible to EDR because they don't spawn processes. You can only infer that code was modified by the `description` of the subsequent restart. If you have file integrity monitoring on the developer's workstation or VCS webhooks, correlate those events with the restart timestamp to confirm.
 
-**Bonus: Isn't This Just Automation?**
+## Bonus: Isn't This Just Automation?
 
-Many of these patterns resemble the automation loops defenders already hunt in malware and cloud intrusions. The difference is not the behavior per se, but the authorization and business context surrounding it. This is automation with a tool that is capable of observing, reasoning, and rewriting the code. It is non-deterministic, and operations staff is not writing rules for it to follow. The AI is trying to determine user intent from a natural language prompt then perform actions autonomously based on that, for extended durations of time.
+Many of these patterns resemble the automation loops defenders already hunt in malware, orchestration systems, and cloud operations. The difference is not necessarily the commands being executed, but how those commands are selected.
+
+Traditional automation follows explicit rules written by humans. The behavior is deterministic and generally predictable.
+
+```text
+if X
+then Y
+```
+
+If the automation performs an unexpected action, operations staff can usually trace that behavior back to a specific rule, script, configuration file, or workflow definition.
+
+Agentic AI operates differently. The user provides an objective in natural language, and the system determines how to accomplish it.
+
+```text
+observe X
+reason about X
+choose Y
+observe result
+reason again
+choose Z
+```
+
+The agent is not simply executing a predefined workflow. It is continuously evaluating new information, selecting actions, observing the outcome, and adapting its approach. The exact sequence of commands may never have been anticipated by the user who launched it.
+
+This distinction matters for defenders. Traditional automation is usually explainable through its configuration. Agentic systems are often explainable only through their telemetry. When an autonomous agent takes an action, the user may not know exactly why that action was chosen, what alternatives were considered, or how the agent arrived at its conclusion.
+
+In many cases, the best forensic evidence available is the telemetry itself: what the agent observed, what it believed was happening, and what actions it decided to take as a result.
