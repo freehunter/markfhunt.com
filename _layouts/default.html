@@ -14,7 +14,9 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-J1J7DS6K7V');
+      gtag('config', 'G-J1J7DS6K7V', {
+        page_category: '{{ page.category | default: "uncategorized" }}'
+      });
     </script>
     <style>
       .wrapper {
