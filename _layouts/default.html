@@ -15,7 +15,8 @@
       gtag('js', new Date());
 
       gtag('config', 'G-J1J7DS6K7V', {
-        page_category: '{{ page.category | default: "uncategorized" }}'
+          page_category: '{{ page.category | default: "uncategorized" }}',
+          send_page_view: true
       });
     </script>
     <style>
