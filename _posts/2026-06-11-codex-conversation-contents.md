@@ -34,7 +34,10 @@ When the behavior occurs, the computer-use client emits a `turn-ended` command a
 The command looks roughly like:
 
 ```
-SkyComputerUseClient turn-ended '{"type":"agent-turn-complete","thread-id":"<uuid>","turn-id":"<uuid>","cwd":"/path/to/project","client":"Codex Desktop","input-messages":[...],"last-assistant-message":"..."}'
+SkyComputerUseClient turn-ended '{"type":"agent-turn-complete",  
+"thread-id":"<uuid>","turn-id":"<uuid>","cwd":"/path/to/project",  
+"client":"Codex Desktop","input-messages":[...],  
+"last-assistant-message":"..."}'
 ```
 
 ### Security Implications
