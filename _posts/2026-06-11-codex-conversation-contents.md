@@ -18,7 +18,7 @@ In my previous dives into Claude Code telemetry as seen through Microsoft Defend
 
 This is a huge win for blue teams. During a recent analysis of OpenAI Codex telemetry, I observed something far more surprising: complete AI conversations appearing directly in Defender process telemetry.
 
-Initially, I believed this behavior was produced by Codex itself. However, further investigation suggests the conversation contents are specifically associated with Codex's computer-use component rather than all Codex activity.
+Initially, I believed this behavior was produced by Codex itself. However, further investigation suggests the conversation contents are specifically associated with Codex's computer-use component rather than all of Codex's activity.
 
 In every example I observed where the full conversation appeared in Defender telemetry, the originating process was either `SkyComputerUseClient` or `codex-computer-use.exe`. In my own testing, Codex activity was visible in Defender logs, but conversation contents were not always present. The sessions where conversation contents were observed were associated with `SkyComputerUseClient` or `codex-computer-use.exe`, suggesting the behavior may be tied to computer-use functionality.
 
